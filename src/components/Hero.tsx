@@ -5,11 +5,7 @@ export default function Hero() {
   return (
     <section className="pt-32 pb-20 px-4">
       <div className="max-w-7xl mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <div>
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 text-red-600 text-xs font-bold uppercase tracking-wider mb-6">
             <TrendingUp className="w-3 h-3" />
             Kuasai Algoritma 2024
@@ -33,14 +29,9 @@ export default function Hero() {
               Coba AI Generator
             </button>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="mt-16 relative"
-        >
+        <div className="mt-16 relative">
           <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent z-10" />
           <div className="grid grid-cols-3 gap-4 max-w-4xl mx-auto opacity-40">
             {[1, 2, 3].map((i) => (
@@ -54,7 +45,7 @@ export default function Hero() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

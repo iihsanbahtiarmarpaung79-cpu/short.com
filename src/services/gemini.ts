@@ -1,8 +1,18 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "" });
+const getAI = () => {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    console.warn("GEMINI_API_KEY is not defined. AI features will not work.");
+    return null;
+  }
+  return new GoogleGenAI({ apiKey });
+};
+
+const ai = getAI();
 
 export async function generateShortsIdeas(niche: string) {
+  if (!ai) throw new Error("AI is not initialized");
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
     contents: `Berikan 5 ide YouTube Shorts yang viral untuk niche: ${niche}. 
@@ -29,6 +39,7 @@ export async function generateShortsIdeas(niche: string) {
 }
 
 export async function generateScript(idea: string) {
+  if (!ai) throw new Error("AI is not initialized");
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
     contents: `Buat skrip YouTube Shorts (durasi < 60 detik) berdasarkan ide ini: "${idea}". 

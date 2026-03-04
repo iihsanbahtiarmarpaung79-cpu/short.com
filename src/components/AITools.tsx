@@ -21,8 +21,9 @@ export default function AITools() {
       setIdeas(result);
       setSelectedIdea(null);
       setScript('');
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
+      alert(error.message || "Gagal mencari ide. Pastikan API Key sudah terpasang.");
     } finally {
       setLoading(false);
     }
@@ -34,8 +35,9 @@ export default function AITools() {
     try {
       const result = await generateScript(`Judul: ${idea.title}, Hook: ${idea.hook}, Isi: ${idea.content}`);
       setScript(result || '');
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
+      alert(error.message || "Gagal membuat skrip.");
     } finally {
       setScriptLoading(false);
     }
